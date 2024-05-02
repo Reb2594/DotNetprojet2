@@ -28,6 +28,23 @@ namespace P2FixAnAppDotNetCode.Models
         public void AddItem(Product product, int quantity)
         {
             // TODO implement the method
+            CartLine line = new CartLine();
+            List<CartLine> cartLines = GetCartLineList();
+            line.Product = product;
+            line.Quantity = quantity;
+            if (cartLines.Any(x => x.Product == product))
+            {
+                foreach (CartLine line1 in cartLines.Where(x => x.Product == product))
+                {
+                    line1.Quantity += quantity;
+                }
+            }
+            else
+            {
+                cartLines.Add(line);
+                //this.Lines.Append<CartLine>(line);
+            }
+
         }
 
         /// <summary>
@@ -42,7 +59,8 @@ namespace P2FixAnAppDotNetCode.Models
         public double GetTotalValue()
         {
             // TODO implement the method
-            return 0.0;
+            List<CartLine> cartLines = GetCartLineList();
+            return cartLines.Sum(x => x.Quantity);            
         }
 
         /// <summary>
@@ -51,7 +69,8 @@ namespace P2FixAnAppDotNetCode.Models
         public double GetAverageValue()
         {
             // TODO implement the method
-            return 0.0;
+            List<CartLine> cartLines = GetCartLineList();
+            return cartLines.Average(x => x.Quantity);            
         }
 
         /// <summary>
@@ -59,8 +78,17 @@ namespace P2FixAnAppDotNetCode.Models
         /// </summary>
         public Product FindProductInCartLines(int productId)
         {
-            // TODO implement the method
-            return null;
+            // TODO implement the method                   
+            CartLine cartLine = new CartLine();
+            if (cartLine.Product.Id == productId)
+            {
+                return cartLine.Product;
+            }
+            else
+            {
+                return null;
+            }            
+            
         }
 
         /// <summary>
