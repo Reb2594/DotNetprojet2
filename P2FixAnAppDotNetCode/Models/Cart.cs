@@ -29,20 +29,20 @@ namespace P2FixAnAppDotNetCode.Models
         {
             // TODO implement the method
             CartLine line = new CartLine();
-            List<CartLine> cartLines = GetCartLineList();
+           
             line.Product = product;
             line.Quantity = quantity;
-            if (cartLines.Any(x => x.Product == product))
+            if (Lines.Any(x => x.Product == product))
             {
-                foreach (CartLine line1 in cartLines.Where(x => x.Product == product))
+                foreach (CartLine line1 in Lines.Where(x => x.Product == product))
                 {
                     line1.Quantity += quantity;
                 }
             }
             else
             {
-                cartLines.Add(line);
-                //this.Lines.Append<CartLine>(line);
+                //cartLines.Add(line);
+                this.Lines.Append<CartLine>(line);
             }
 
         }
@@ -59,8 +59,9 @@ namespace P2FixAnAppDotNetCode.Models
         public double GetTotalValue()
         {
             // TODO implement the method
-            List<CartLine> cartLines = GetCartLineList();
-            return cartLines.Sum(x => x.Quantity);            
+            /*List<CartLine> cartLines = GetCartLineList();
+            return cartLines.Sum(x => x.Quantity);  */
+            return 0.0;
         }
 
         /// <summary>
@@ -69,8 +70,9 @@ namespace P2FixAnAppDotNetCode.Models
         public double GetAverageValue()
         {
             // TODO implement the method
-            List<CartLine> cartLines = GetCartLineList();
-            return cartLines.Average(x => x.Quantity);            
+            /*List<CartLine> cartLines = GetCartLineList();
+            return cartLines.Average(x => x.Quantity); */
+            return 0.0;
         }
 
         /// <summary>
