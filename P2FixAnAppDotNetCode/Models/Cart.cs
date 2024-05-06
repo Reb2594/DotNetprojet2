@@ -28,6 +28,7 @@ namespace P2FixAnAppDotNetCode.Models
         public void AddItem(Product product, int quantity)
         {
             // TODO implement the method
+            List<CartLine> cartLines = GetCartLineList();
             CartLine line = new CartLine();
            
             line.Product = product;
@@ -41,8 +42,8 @@ namespace P2FixAnAppDotNetCode.Models
             }
             else
             {
-                //cartLines.Add(line);
-                this.Lines.Append<CartLine>(line);
+                cartLines.Add(line);
+                //this.Lines.Append<CartLine>(line);
             }
 
         }
@@ -59,9 +60,19 @@ namespace P2FixAnAppDotNetCode.Models
         public double GetTotalValue()
         {
             // TODO implement the method
-            /*List<CartLine> cartLines = GetCartLineList();
-            return cartLines.Sum(x => x.Quantity);  */
-            return 0.0;
+            
+            List<CartLine> cartLines = GetCartLineList();
+            double total = 0.0;
+            foreach (CartLine cartline in cartLines)
+            {
+                
+                double price = cartline.Product.Price;
+                int quantity = cartline.Quantity;
+                double lineTotal = price * quantity;
+                total += lineTotal;                
+                
+            }
+            return total;
         }
 
         /// <summary>
@@ -70,9 +81,8 @@ namespace P2FixAnAppDotNetCode.Models
         public double GetAverageValue()
         {
             // TODO implement the method
-            /*List<CartLine> cartLines = GetCartLineList();
-            return cartLines.Average(x => x.Quantity); */
-            return 0.0;
+            List<CartLine> cartLines = GetCartLineList();                       
+            return GetTotalValue() / cartLines.Count;
         }
 
         /// <summary>
