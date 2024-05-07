@@ -34,7 +34,8 @@ namespace P2FixAnAppDotNetCode.Models.Services
         public Product GetProductById(int id)
         {
             // TODO implement the method
-            return _productRepository.FindProductById(id);
+            return _productRepository.GetAllProducts().Find(x => x.Id == id);
+            //return _productRepository.FindProductById(id);
         }
 
         /// <summary>
@@ -49,8 +50,7 @@ namespace P2FixAnAppDotNetCode.Models.Services
                 int productId = line.Product.Id;
                 int quantityToRemove = line.Quantity;
                 _productRepository.UpdateProductStocks(productId, quantityToRemove);
-            }
-            //_productRepository.UpdateProductStocks(productId, quantityToRemove);
+            }            
         }
     }
 }
