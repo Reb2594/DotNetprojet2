@@ -40,6 +40,7 @@ namespace P2FixAnAppDotNetCode.Models
             if (line == null)
             {
                 Lines.Add(new CartLine { Product = product, Quantity = quantity });
+
             }
             else
             {
@@ -91,9 +92,15 @@ namespace P2FixAnAppDotNetCode.Models
         public double GetAverageValue()
         {
             // TODO implement the method
-            if (Lines != null)
+            if (Lines != null && Lines.Count>0 )
             {
-                return GetTotalValue() / Lines.Count;
+                int totalQuantity = 0;
+                foreach (CartLine cartLine in Lines)
+                {
+                    int quantity = cartLine.Quantity;
+                    totalQuantity += quantity;
+                }
+                return GetTotalValue() / totalQuantity;
             }
             else
             {
@@ -133,8 +140,7 @@ namespace P2FixAnAppDotNetCode.Models
         /// </summary>
         public void Clear()
         {
-            Cart cart = new Cart();
-            cart.Lines.Clear();
+            Lines.Clear();
         }
     }
 
