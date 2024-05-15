@@ -33,7 +33,7 @@ namespace P2FixAnAppDotNetCode.Models
         /// </summary>//
         public void AddItem(Product product, int quantity)
         {
-            // TODO implement the method           
+            // DONE implement the method           
 
             CartLine line = Lines.FirstOrDefault(p => p.Product.Id == product.Id);
 
@@ -95,7 +95,7 @@ namespace P2FixAnAppDotNetCode.Models
         /// </summary>
         public double GetAverageValue()
         {
-            // TODO implement the method
+            // DONE implement the method
             if (Lines != null && Lines.Count>0 )
             {
                 int totalQuantity = 0;
@@ -118,7 +118,7 @@ namespace P2FixAnAppDotNetCode.Models
         /// </summary>
         public Product FindProductInCartLines(int productId)
         {
-            // TODO implement the method                   
+            // DONE implement the method                   
             CartLine cartLine = new CartLine();
             if (cartLine.Product.Id == productId)
             {

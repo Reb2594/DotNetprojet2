@@ -23,7 +23,7 @@ namespace P2FixAnAppDotNetCode.Models.Services
         /// </summary>
         public List<Product> GetAllProducts()
         {
-            // TODO change the return type from array to List<T> and propagate the change
+            // DONE change the return type from array to List<T> and propagate the change
             // throughout the application
             return _productRepository.GetAllProducts();
         }
@@ -33,9 +33,8 @@ namespace P2FixAnAppDotNetCode.Models.Services
         /// </summary>
         public Product GetProductById(int id)
         {
-            // TODO implement the method
-            return _productRepository.GetAllProducts().Find(x => x.Id == id);
-            //return _productRepository.FindProductById(id);
+            // DONE implement the method
+            return _productRepository.GetAllProducts().Find(x => x.Id == id);            
         }
 
         /// <summary>
@@ -43,7 +42,7 @@ namespace P2FixAnAppDotNetCode.Models.Services
         /// </summary>
         public void UpdateProductQuantities(Cart cart)
         {
-            // TODO implement the method
+            // DONE implement the method
             // update product inventory by using _productRepository.UpdateProductStocks() method.            
             foreach (CartLine line in cart.Lines)
             {
