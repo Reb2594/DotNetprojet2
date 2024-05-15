@@ -44,7 +44,11 @@ namespace P2FixAnAppDotNetCode.Models
             }
             else
             {
-                line.Quantity += quantity;
+                if (line.Quantity < line.Product.Stock)
+                {
+                    line.Quantity += quantity;
+                }
+                
             }
 
         }
@@ -60,7 +64,7 @@ namespace P2FixAnAppDotNetCode.Models
         /// </summary>
         public double GetTotalValue()
         {
-            // TODO implement the method            
+            //DONE implement the method            
             
             double total = 0.0;
             if (Lines != null)
