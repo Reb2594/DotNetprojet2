@@ -64,7 +64,7 @@ namespace P2FixAnAppDotNetCode.Models
         /// </summary>
         public double GetTotalValue()
         {
-            //DONE implement the method            
+            // DONE implement the method            
             
             double total = 0.0;
             if (Lines != null)
@@ -72,11 +72,7 @@ namespace P2FixAnAppDotNetCode.Models
                 foreach (CartLine cartLine in Lines)
                 {
 
-                    double price = cartLine.Product.Price;
-                    int quantity = cartLine.Quantity;
-                    double lineTotal = price * quantity;
-                    total += lineTotal;
-                    
+                    total += (cartLine.Product.Price * cartLine.Quantity);                                    
 
                 }
 
@@ -101,8 +97,7 @@ namespace P2FixAnAppDotNetCode.Models
                 int totalQuantity = 0;
                 foreach (CartLine cartLine in Lines)
                 {
-                    int quantity = cartLine.Quantity;
-                    totalQuantity += quantity;
+                   totalQuantity += cartLine.Quantity;
                 }
                 return GetTotalValue() / totalQuantity;
             }

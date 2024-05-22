@@ -42,13 +42,10 @@ namespace P2FixAnAppDotNetCode.Models.Services
         /// </summary>
         public void UpdateProductQuantities(Cart cart)
         {
-            // DONE implement the method
-            // update product inventory by using _productRepository.UpdateProductStocks() method.            
+            // DONE implement the method                       
             foreach (CartLine line in cart.Lines)
-            {
-                int productId = line.Product.Id;
-                int quantityToRemove = line.Quantity;                
-                _productRepository.UpdateProductStocks(productId, quantityToRemove);
+            {                 
+               _productRepository.UpdateProductStocks(line.Product.Id, line.Quantity);
             }            
         }
 
