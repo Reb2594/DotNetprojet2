@@ -1,4 +1,6 @@
-﻿using P2FixAnAppDotNetCode.Models.Repositories;
+﻿using Microsoft.AspNetCore.Mvc;
+using P2FixAnAppDotNetCode.Models.Repositories;
+using System.Collections.Generic;
 
 namespace P2FixAnAppDotNetCode.Models.Services
 {
@@ -19,10 +21,8 @@ namespace P2FixAnAppDotNetCode.Models.Services
         /// <summary>
         /// Get all product from the inventory
         /// </summary>
-        public Product[] GetAllProducts()
-        {
-            // TODO change the return type from array to List<T> and propagate the change
-            // throughout the application
+        public List<Product> GetAllProducts()
+        {            
             return _productRepository.GetAllProducts();
         }
 
@@ -31,17 +31,19 @@ namespace P2FixAnAppDotNetCode.Models.Services
         /// </summary>
         public Product GetProductById(int id)
         {
-            // TODO implement the method
-            return null;
+            return _productRepository.GetAllProducts().Find(x => x.Id == id);            
         }
 
         /// <summary>
         /// Update the quantities left for each product in the inventory depending of ordered the quantities
         /// </summary>
         public void UpdateProductQuantities(Cart cart)
-        {
-            // TODO implement the method
-            // update product inventory by using _productRepository.UpdateProductStocks() method.
+        {                                 
+            foreach (CartLine line in cart.Lines)
+            {                 
+               _productRepository.UpdateProductStocks(line.Product.Id, line.Quantity);
+            }            
         }
+
     }
 }
