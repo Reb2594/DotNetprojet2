@@ -32,9 +32,7 @@ namespace P2FixAnAppDotNetCode.Models
         /// Adds a product in the cart or increment its quantity in the cart if already added
         /// </summary>//
         public void AddItem(Product product, int quantity)
-        {
-            // DONE implement the method           
-
+        {            
             CartLine line = Lines.FirstOrDefault(p => p.Product.Id == product.Id);
 
             if (line == null)
@@ -63,9 +61,7 @@ namespace P2FixAnAppDotNetCode.Models
         /// Get total value of a cart
         /// </summary>
         public double GetTotalValue()
-        {
-            // DONE implement the method            
-            
+        {        
             double total = 0.0;
             if (Lines != null)
             {
@@ -90,8 +86,7 @@ namespace P2FixAnAppDotNetCode.Models
         /// Get average value of a cart
         /// </summary>
         public double GetAverageValue()
-        {
-            // DONE implement the method
+        {            
             if (Lines != null && Lines.Count>0 )
             {
                 int totalQuantity = 0;
@@ -112,8 +107,7 @@ namespace P2FixAnAppDotNetCode.Models
         /// Looks after a given product in the cart and returns if it finds it
         /// </summary>
         public Product FindProductInCartLines(int productId)
-        {
-            // DONE implement the method                   
+        {                             
             CartLine cartLine = new CartLine();
             if (cartLine.Product.Id == productId)
             {
